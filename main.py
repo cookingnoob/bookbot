@@ -1,10 +1,15 @@
 def main(): 
-    path = 'books/frankenstein.txt'
+    path = 'books/frankenstei.txt'
     text = get_book_text(path)
-    counter = count_words(text)
+    if text:
+        counter = count_words(text)
+    else:
+        counter = 'Error: could not read the book'
     print(counter)
 
 def count_words(text):
+    if(len(text) == 0):
+        return 'Could not count how many words the book has'
     words = text.split()
     return len(words)
 
