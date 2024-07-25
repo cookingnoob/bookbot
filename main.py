@@ -2,13 +2,28 @@ def main():
     path = 'books/frankenstein.txt'
     text = get_book_text(path)
     letter_counter = count_letters(text)
-    print(letter_counter)
-    # if text:
-    #     counter = get_words(text)
-    # else:
-    #     counter = 'Error: could not read the book'
-    # print(len(counter))
+    if text:
+        counter = get_words(text)
+    else:
+        counter = 'Error: could not read the book'
+    ordered_letters = order(letter_counter)
+    print('--- Begin report of books/frankenstein.txt ---')
+    print(len(counter), 'words found in the document \n')
+    for letter in ordered_letters:
 
+        print(f"The '{letter['letter']}' character was found {letter['count']} times")
+    print('--- End report ---')
+
+#sorts the letters with the count key
+def higher_count(e):
+    return e['count']
+
+#recived the counted letters dictionary and adds letter and count keys so .sort() can be used
+def order(letters):
+    letter_list = [{'letter': k, 'count': v}for k,v in letters.items()]
+    letter_list.sort(reverse=True,key=higher_count)
+    return letter_list
+   
 #separates the whole text into a list of strings
 def get_words(text):
     if(len(text) == 0):
