@@ -1,14 +1,15 @@
-def main(): 
+def main():
     path = 'books/frankenstein.txt'
     text = get_book_text(path)
-    count_letters(text)
+    letter_counter = count_letters(text)
+    print(letter_counter)
     # if text:
     #     counter = get_words(text)
     # else:
     #     counter = 'Error: could not read the book'
     # print(len(counter))
 
-#separates the whole text into a list of strings 
+#separates the whole text into a list of strings
 def get_words(text):
     if(len(text) == 0):
         return 'Could not count how many words the book has'
@@ -17,7 +18,7 @@ def get_words(text):
 
 
 def count_letters(text):
-    letters= {
+    alphabet= {
               'a': 0,
               'b': 0,
               'c': 0,
@@ -45,10 +46,16 @@ def count_letters(text):
               'y': 0,
               'z': 0,
               }
-    words = get_words(text)
-    #for word in words:
-     #falta hacer loop a la palabra para conocer sus letas
-     # hacer comparativo con el diccionario para sumar
+    letters = list(text)
+
+    for letter in letters:
+        lower_letter = letter.lower()
+        if(alphabet.get(lower_letter)== None):
+            continue
+        else:
+            alphabet[lower_letter] += 1
+    return alphabet
+
 
 
 #opens the file and reads it
