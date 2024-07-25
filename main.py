@@ -46,13 +46,9 @@ def count_letters(text):
               'y': 0,
               'z': 0,
               }
-    letters = list(text)
-
-    for letter in letters:
+    for letter in text:
         lower_letter = letter.lower()
-        if(alphabet.get(lower_letter)== None):
-            continue
-        else:
+        if lower_letter in alphabet:
             alphabet[lower_letter] += 1
     return alphabet
 
